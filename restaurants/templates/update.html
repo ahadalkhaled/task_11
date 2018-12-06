@@ -12,7 +12,9 @@
         <form action="{% url 'restaurant-update' restaurant_obj.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form|crispy}}
+            {% if restaurant_obj.owner == request.user or request.user.is_staff %}
             <input type="submit" value="Update" class="btn btn-outline-primary">
+            {% endif %}
         </form>
     </p>
   </div>
